@@ -24,9 +24,9 @@ android {
                 // Creates a Maven publication called "release".
                 release(MavenPublication) {
                     // You can then customize attributes of the publication as shown below.
-                    groupId = 'me.woayli1'
-                    artifactId = 'fragmentationx-swipeback'
-                    version = '1.0.3'
+//                    groupId = 'me.woayli1'
+//                    artifactId = 'fragmentationx-swipeback'
+//                    version = '1.0.3'
 
                     // Applies the component for the release build variant.
                     from components.release
