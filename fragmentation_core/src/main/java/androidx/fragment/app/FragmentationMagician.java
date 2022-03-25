@@ -1,6 +1,5 @@
 package androidx.fragment.app;
 
-
 import java.util.List;
 
 /**
@@ -9,11 +8,8 @@ import java.util.List;
 public class FragmentationMagician {
 
     public static boolean isStateSaved(FragmentManager fragmentManager) {
-        if (!(fragmentManager instanceof FragmentManagerImpl))
-            return false;
         try {
-            FragmentManagerImpl fragmentManagerImpl = (FragmentManagerImpl) fragmentManager;
-            return fragmentManagerImpl.isStateSaved();
+            return fragmentManager.isStateSaved();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,19 +76,10 @@ public class FragmentationMagician {
     }
 
     private static void hookStateSaved(FragmentManager fragmentManager, Runnable runnable) {
-        if (!(fragmentManager instanceof FragmentManagerImpl)) return;
-
-        FragmentManagerImpl fragmentManagerImpl = (FragmentManagerImpl) fragmentManager;
         if (isStateSaved(fragmentManager)) {
-            boolean tempStateSaved = fragmentManagerImpl.mStateSaved;
-            boolean tempStopped = fragmentManagerImpl.mStopped;
-            fragmentManagerImpl.mStateSaved = false;
-            fragmentManagerImpl.mStopped = false;
-
+            fragmentManager.noteStateNotSaved();
             runnable.run();
-
-            fragmentManagerImpl.mStopped = tempStopped;
-            fragmentManagerImpl.mStateSaved = tempStateSaved;
+            fragmentManager.scheduleCommit();
         } else {
             runnable.run();
         }
