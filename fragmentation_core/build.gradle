@@ -15,14 +15,16 @@ android {
         consumerProguardFiles 'proguard-rules.pro'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+
+        incremental = false
+    }
 
 //    lintOptions {
 //        abortOnError false
 //    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     afterEvaluate {
         publishing {

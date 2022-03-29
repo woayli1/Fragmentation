@@ -42,8 +42,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
 
+        incremental = false
+    }
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
