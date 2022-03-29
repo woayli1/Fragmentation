@@ -40,6 +40,9 @@ android {
                     from components.release
                 }
             }
+            repositories {
+                mavenLocal()
+            }
         }
     }
 
